@@ -10,11 +10,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:name', userController.getUser, (req, res) => {
-  res.status(200).send('haunted');
+  res.status(200).send(`haunted: ${res.locals.user}`);
 });
 
 router.post('/:name', userController.createUser, (req, res) => {
-  res.status(200).send('superpower');
+  res.status(200).send(`superpower: ${res.locals.user}`);
 });
 
 module.exports = router;

@@ -3,8 +3,8 @@ const db = require('../models/userModel');
 const userController = {};
 
 const query = {
-  create: 'INSERT INTO user (name) VALUES ($1)',
-  get: 'SELECT * FROM users',
+  create: 'INSERT INTO users (name, created_at) VALUES ($1, CURRENT_TIMESTAMP)',
+  get: 'SELECT * FROM users WHERE name=$1',
   remove: 'DELETE FROM users WHERE _id=$1',
 };
 
@@ -23,7 +23,20 @@ userController.createUser = async (req, res, next) => {
   }
 };
 
-userController.getUser = async (req, res, next) => {};
+userController.getUser = async (req, res, next) => {
+  try {
+    const { get } = query;
+    const { name } = req.params;
+    const { rows } = await db.query(get, [name]);
+    console.log(`userController.getUser ->`, rows[0]);
+    res.locals.user = rows[0].name;
+    return next();
+  } catch (error) {
+    return next({
+      error: `error inside userController.getUser, ERROR: ${error}`,
+    });
+  }
+};
 
 userController.deleteUser = async (req, res, next) => {};
 
