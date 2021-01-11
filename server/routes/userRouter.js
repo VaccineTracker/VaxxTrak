@@ -6,15 +6,15 @@ const userController = require('../controllers/userController.js');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.status(200).send('beyonce featuring frank ocean');
+  res.status(200).send('no angel');
 });
 
 router.get('/:name', userController.getUser, (req, res) => {
-  res.json(res.locals.user);
+  res.status(200).send('haunted');
 });
 
-router.get('/:name', userController.createUser, (req, res) => {
-  res.json(res.locals.user);
+router.post('/:name', userController.createUser, (req, res) => {
+  res.status(200).send('superpower');
 });
 
 module.exports = router;
