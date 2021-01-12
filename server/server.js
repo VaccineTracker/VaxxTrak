@@ -15,8 +15,9 @@ app.use('/user', userRouter);
 
 // respond with main app
 app.get('/', (req, res) =>
-  res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
+  res.status(200).sendFile(path.resolve(__dirname, '../data/index.html'))
 );
+app.get('/', express.static(path.resolve(__dirname, '../data')));
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.sendStatus(404));

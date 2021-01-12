@@ -24,3 +24,7 @@ https://api.covidtracking.com/v1/states/info.json/
 
 #### by state
 https://api.covidtracking.com/v1/states/NY/info.json/
+
+
+### Total Vaccinations in CSV
+https://covid.ourworldindata.org/data/vaccinations/country_data/United States.csv
