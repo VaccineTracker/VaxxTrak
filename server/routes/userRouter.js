@@ -1,20 +1,19 @@
 const express = require('express');
-const path = require('path');
 
 const userController = require('../controllers/userController.js');
 
 const router = express.Router();
 
-router.get('/:name', userController.getUser, (req, res) => {
-  res.status(200).send(`haunted: ${res.locals.user}`);
+router.get('/:username', userController.getProfile, (req, res) => {
+  res.status(200).json(res.locals.profile);
 });
 
-router.post('/:name', userController.createUser, (req, res) => {
-  res.status(200).send(`superpower: ${res.locals.user}`);
+router.post('/:username', userController.createProfile, (req, res) => {
+  res.status(200).json(res.locals.profile);
 });
 
-router.delete('/:name', userController.deleteUser, (req, res) => {
-  res.status(200).send(`no angel:`);
+router.delete('/:username', userController.deleteProfile, (req, res) => {
+  res.status(200).json(res.locals.profile);
 });
 
 module.exports = router;

@@ -12,7 +12,7 @@ const vaxRouter = require('./routes/vaxRouter');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/user', userRouter);
+app.use('/profile', userRouter);
 app.use('/vaccinations', vaxRouter);
 
 // respond with main app

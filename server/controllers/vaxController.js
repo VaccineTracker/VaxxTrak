@@ -8,11 +8,24 @@ vaxController.getState = async (req, res, next) => {
     const { rows } = await db.query(
       `SELECT * FROM vax WHERE "State"='${state}'`
     );
-    [res.locals.stateData] = rows;
+    [res.locals.location] = rows;
     return next();
   } catch (error) {
     return next({
-      error: `!ERROR! in vaxController.getState!\n !ERROR!: ${error}`,
+      error: `!ERR! in vaxController.getState!\n !ERR!: ${error}`,
+    });
+  }
+};
+
+vaxController.getAllStates = async (req, res, next) => {
+  try {
+    const { rows } = await db.query('SELECT * FROM vax');
+    res.locals.allStates = rows;
+
+    return next();
+  } catch (error) {
+    return next({
+      error: `!ERR!: in vaxController.getAllStates!\n !ERR!: ${error}`,
     });
   }
 };
