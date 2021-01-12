@@ -1,28 +1,19 @@
-// import the user Database
-//const UserDb  = require('../models/'); 
-const express= require('express ');
-const router = express.Router(); 
+const express = require('express');
 
-const user = require('../controllers/userController')
+const userController = require('../controllers/userController.js');
 
+const router = express.Router();
 
-
-router.get('/:username', (req, res) => {
-
+router.get('/:username', userController.getProfile, (req, res) => {
+  res.status(200).json(res.locals.profile);
 });
 
-router.post('/:userName', user.createUser, (req, res) => {
+router.post('/:username', userController.createProfile, (req, res) => {
+  res.status(200).json(res.locals.profile);
+});
 
-}); 
+router.delete('/:username', userController.deleteProfile, (req, res) => {
+  res.status(200).json(res.locals.profile);
+});
 
-
-router.delete('/:username', user.verifyUser, (req, res) => {
-
-}); 
-
-module.exports = router; 
-
-
-
-
-
+module.exports = router;

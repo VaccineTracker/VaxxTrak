@@ -1,34 +1,72 @@
-const db = require('../models')
-const userController = {}; 
+const db = require('../models/psql_db');
 
-userController.createUser =  async (req, res, next) => {
-        try{
-            const newUser = db.query('INSERT INTO VALUES', [req.body.newUser])
-        } catch (error){
-            return next(error)
-        }
-        return next(); 
-}; 
+const userController = {};
 
+const query = {
+  create:
+    'INSERT INTO users (name) VALUES ($1) ON CONFLICT DO NOTHING RETURNING *',
+  get: 'SELECT * FROM users WHERE name=$1',
+  delete: 'DELETE FROM users WHERE name=$1 RETURNING *',
+};
 
-userController.verifyUser = async (req, res, next) => {
-       try{
-        const checkUser = await db.query('SELECT FROM {ROW} WHERE ID =') 
-       } catch(error){
-           return next(error)
-       }
-      
-}; 
+userController.getProfile = async (req, res, next) => {
+  try {
+    const { username } = req.params;
 
-userController.deleteUser = async (req, res, next) => {
-        try{
-            const deleteUser = await db.query('DELETE FROM {row} WHERE id ', [req.params.id] )
-             res.locals.deleteUser = deleteUser; 
-             next()
-        } catch (error) {
-            return next(error);
-        }
-}; 
+    const { rows } = await db.query(query.get, [username]);
+    const [profile] = rows;
 
+    if (!profile) {
+      return res.status(404).send('profile was not found');
+    }
+    res.locals.profile = profile;
+
+    return next();
+  } catch (error) {
+    return next({
+      error: `!ERR!: in userController.getProfile\n !ERR!: ${error}`,
+    });
+  }
+};
+
+userController.createProfile = async (req, res, next) => {
+  try {
+    const { username } = req.params;
+
+    const { rows } = await db.query(query.create, [username]);
+    const [profile] = rows;
+
+    if (!profile) {
+      return res.status(404).send('this username is taken');
+    }
+    res.locals.profile = profile;
+
+    return next();
+  } catch (error) {
+    return next({
+      error: `!ERR!: in userController.createProfile\n !ERR!: ${error}`,
+    });
+  }
+};
+
+userController.deleteProfile = async (req, res, next) => {
+  try {
+    const { username } = req.params;
+
+    const { rows } = await db.query(query.delete, [username]);
+    const [profile] = rows;
+
+    if (!profile) {
+      return res.status(404).send("this user's profile was not found");
+    }
+    res.locals.profile = profile;
+
+    return next();
+  } catch (error) {
+    return next({
+      error: `!ERR!: in userController.getProfile\n !ERR!: ${error}`,
+    });
+  }
+};
 
 module.exports = userController;
