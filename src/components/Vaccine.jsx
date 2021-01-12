@@ -17,8 +17,9 @@ class Vaccine extends React.Component {
       return (
         <div className="vaccineMain">
           <div className="search">
-            
+            <br></br>
             <Search getZip={this.getZip} />
+            <br></br>
           </div>
           <div className="vaccineChart"> chart renders here </div>
         </div>
