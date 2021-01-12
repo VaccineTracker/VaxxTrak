@@ -7,11 +7,13 @@ const PORT = 4040;
 
 // routes
 const userRouter = require('./routes/userRouter');
+const vaxRouter = require('./routes/vaxRouter');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/user', userRouter);
+app.use('/vaccinations', vaxRouter);
 
 // respond with main app
 app.get('/', (req, res) =>
