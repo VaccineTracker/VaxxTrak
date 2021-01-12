@@ -2,7 +2,7 @@
   "name": "vaccine-tracker",
   "version": "1.0.0",
   "description": "Covid-19 Vaccination Tracker",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=production nodemon server/server.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VaccineTracker/vaccine-tracker.git "
+    "url": "git+https://github.com/VaccineTracker/vaccine-tracker.git"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,24 @@
     "url": "https://github.com/VaccineTracker/vaccine-tracker/issues"
   },
   "homepage": "https://github.com/VaccineTracker/vaccine-tracker#readme",
+  "keywords": [],
+  "dependencies": {
+    "cookie-session": "^1.4.0",
+    "ejs": "^3.1.5",
+    "react-dom": "^17.0.1",
+    "sass": "^1.29.0", 
+    "express": "^4.17.1",
+    "mongoose": "^5.11.11",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "pg": "^8.5.1",
+    "postgres": "^1.0.2",
+    "react": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "body-parser": "^1.19.0",
+    "csv-parser": "^3.0.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
@@ -35,16 +53,5 @@
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {
-    "express": "^4.17.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "sass": "^1.29.0", 
-    "body-parser": "^1.19.0",
-    "csv-parser": "^3.0.0",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.7",
-    "pg": "^8.5.1"
   }
 }
