@@ -1,6 +1,6 @@
 //vaccine database 
 //const vaccineData = require('../models/'); 
-const express = require('express');\
+const express = require('express');
 const router = express.Router(); 
 const app = require('../server/server.js');
 const vaccCont = require('../controllers/vaccineController')

@@ -11,7 +11,7 @@ userController.createUser =  async (req, res, next) => {
 }; 
 
 
-userController.verifyUser = await (req, res, next) => {
+userController.verifyUser = async (req, res, next) => {
        try{
         const checkUser = await db.query('SELECT FROM {ROW} WHERE ID =') 
        } catch(error){
