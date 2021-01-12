@@ -2,18 +2,33 @@
   "name": "vaccine-tracker",
   "version": "1.0.0",
   "description": "Covid-19 Vaccination Tracker",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VaccineTracker/vaccine-tracker.git "
+    "url": "git+https://github.com/VaccineTracker/vaccine-tracker.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VaccineTracker/vaccine-tracker/issues"
   },
-  "homepage": "https://github.com/VaccineTracker/vaccine-tracker#readme"
+  "homepage": "https://github.com/VaccineTracker/vaccine-tracker#readme",
+  "keywords": [],
+  "dependencies": {
+    "cookie-session": "^1.4.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.11",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "pg": "^8.5.1",
+    "postgres": "^1.0.2",
+    "react": "^17.0.1",
+    "react-router-dom": "^5.2.0"
+  }
 }
