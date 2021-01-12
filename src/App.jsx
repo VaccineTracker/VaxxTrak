@@ -1,6 +1,5 @@
 import React, { useState, useEffect }  from "react";
-import "./styles.css";
-import Vaccine from './components/Vaccine'
+import Vaccine from './components/Vaccine.jsx'
 const App = () => {
 
   

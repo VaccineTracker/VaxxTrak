@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from "react";
-import Search from './Search';
+import Search from './Search.jsx';
 const Vaccine = () => {
 
   const [vaccine, getVaccine] = useState(null);
