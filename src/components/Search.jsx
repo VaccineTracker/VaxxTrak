@@ -6,10 +6,12 @@ class Search extends React.Component {
     super(props);
 
     this.state = { zip: "" };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
   };
+
   handleChange(evt) {
     this.setState({ 
       [evt.target.name]: evt.target.value
@@ -19,8 +21,9 @@ class Search extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault(); //keeps page from reloading
     //will eventually take this input and pass it to Vaccine search
-    alert("looking good, feeling great: " + this.state.zip);
-    this.setState({ value: "" });
+    this.props.getZip(this.state);
+    this.setState({ zip: "" });
+    
   };
   
     render() {

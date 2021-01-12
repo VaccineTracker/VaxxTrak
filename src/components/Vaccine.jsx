@@ -5,16 +5,22 @@ import Search from "./Search.jsx";
 class Vaccine extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { zip: '' };
+
+    this.getZip = this.getZip.bind(this);
   }
-    
+  getZip(zip) {
+    this.setState(zip)    
+  }
+  
     render() {
       return (
         <div className="vaccineMain">
           <div className="search">
-            <p>this is a cute search bar</p>
+            
             <Search getZip={this.getZip} />
           </div>
-          <div className="vaccineChart">a gorgeous chart</div>
+          <div className="vaccineChart"> chart renders here </div>
         </div>
       )
 

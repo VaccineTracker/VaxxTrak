@@ -6,9 +6,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <h2>Queen</h2>
+      <h1>App</h1>
+      <h2>Vaccine</h2>
       <Vaccine />
-      <h2>of the club</h2>
+      <h2>Login</h2>
       <Login />
     </div>
   );
