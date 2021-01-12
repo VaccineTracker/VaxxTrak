@@ -4,7 +4,7 @@
   "description": "Covid-19 Vaccination Tracker",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,6 +29,8 @@
     "pg": "^8.5.1",
     "postgres": "^1.0.2",
     "react": "^17.0.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "body-parser": "^1.19.0",
+    "csv-parser": "^3.0.0"
   }
 }
