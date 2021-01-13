@@ -1,6 +1,8 @@
 # Private Keys
 keys.js
 
+package-lock.json
+
 # Logs
 logs
 *.log
