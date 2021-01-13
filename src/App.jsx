@@ -1,15 +1,15 @@
 import React from "react";
 
-import UserProvider from './store/UserContext';
+import UserProvider from './store/UserContext.js';
 import MainContainer from './components/MainContainer.jsx';
 
 const App = () => {
   return (
-    <UserProvider>
+    <UserProvider >
       <div className="app">
         <MainContainer />
       </div>
-    </UserProvider>
+    </ UserProvider>
   );
 }
 

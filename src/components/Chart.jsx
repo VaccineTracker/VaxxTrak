@@ -13,10 +13,10 @@ class Chart extends Component {
   }
   render() {
     const data = {
-      labels: ['Moderna', 'Pfizer', 'Total Administered'],
+      labels: ['Moderna', 'Pfizer', 'Total Administered'], //total_distrubuted
       datasets: [
         {
-          label: 'My First dataset',
+          label: 'My First dataset', //oklahoma
           fill: false,
           lineTension: 0.1,
           backgroundColor: 'rgba(75,192,192,0.4)',
@@ -34,7 +34,7 @@ class Chart extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: [4800, 4000, 3000]
+          data: [4800, 4000, 3000] //310300......
         }
       ]
     };
