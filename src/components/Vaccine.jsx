@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from "react";
 import Search from "./Search.jsx";
-
+import Chart from './Chart.jsx'
 
 class Vaccine extends React.Component {
   constructor(props) {
@@ -21,7 +21,8 @@ class Vaccine extends React.Component {
             <Search getZip={this.getZip} />
             <br></br>
           </div>
-          <div className="vaccineChart"> chart renders here </div>
+          <div className="vaccineChart">
+          </div>
         </div>
       )
 
