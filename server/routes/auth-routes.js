@@ -22,7 +22,11 @@ router.get(
 
 // callback route to google to redirect
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-  res.redirect('/profile');
+  // res.locals.isVerified = true;
+  const user = 'temporary_user_id';
+  console.log(`user in /google/redirect: ${req.user}`);
+  res.cookie('success', user);
+  res.redirect('/');
 });
 
 module.exports = router;
