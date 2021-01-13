@@ -21,7 +21,6 @@ const userSchema = new Schema({
     thumbnail: String
 })
 
-// user model represents the collection of 'User' records
 const User = mongoose.model('user', userSchema);
 
 

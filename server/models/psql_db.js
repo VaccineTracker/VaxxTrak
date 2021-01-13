@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-const { ELEPHANT_URI } = require('../../keys');
+const { ELEPHANT_URI } = require('../../config/keys');
 
 const myURI = ELEPHANT_URI;
 

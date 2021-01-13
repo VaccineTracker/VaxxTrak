@@ -1,6 +1,11 @@
 const path = require('path');
 const express = require('express');
+const passportSetup = require('../config/passport-setup');
+const mongoose = require('mongoose');
+const keys = require('../config/keys');
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 
 const app = express();
 const PORT = 3000;
@@ -8,14 +13,43 @@ const PORT = 3000;
 // routes
 const userRouter = require('./routes/userRouter');
 const vaxRouter = require('./routes/vaxRouter');
+const authRoutes = require('./routes/auth-routes');
 
 // parse requests
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// set up view engine
+app.set('view engine', 'ejs');
+
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey]
+}))
+
+
+//initialize passport:
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// connect to mongodb
+mongoose.connect(keys.mongodb.dbURI, () => {
+    console.log('connected to mongodb');
+});
+
 
 // route handlers
 app.use('/profile', userRouter);
 app.use('/vaccinations', vaxRouter);
+app.use('/auth', authRoutes);
+
+// create a home route
+app.get('/', (req, res) => {
+  res.render('home', {user: req.user})
+});
+
 
 // serve static files
 app.use('/assets', express.static(path.resolve(__dirname, '../src/assets')));
