@@ -1,12 +1,15 @@
-const URLS = {
+const URL = {
   moderna: 'https://data.cdc.gov/resource/b7pe-5nws.json',
-  pfizer: 
-}
+  pfizer: 'https://data.cdc.gov/resource/saz5-9hgg.json',
+  casesByState: 'https://data.cdc.gov/resource/9mfq-cb36.json',
+  zipcode:
+    'https://www.zipcodeapi.com/rest/CpgQ68eNMq9Z3twQDOuNWGfQGSjzRIxDcdrHP45P6WXJg7OzVBz8F62H9XYLmYYP/info.json',
+};
 
-async function request(API, jurisdiction = '') {
+async function request(API, param, arg = '') {
   let query;
-  if (jurisdiction) query = `?jurisdiction=${jurisdiction}`;
-  else query = jurisdiction;
+  if (arg) query = `?${param}=${arg}`;
+  else query = arg;
 
   const response = await fetch(`${API}${query}`);
   const data = await response.json();
@@ -14,4 +17,12 @@ async function request(API, jurisdiction = '') {
   return data;
 }
 
-export default { API, request };
+async function fromZipcode(zipcode) {
+  const query = `${URL.zipcode}/${zipcode}/degrees`;
+
+  const response = await fetch(query);
+  const data = await response.json();
+
+  return data;
+}
+export default { URL, request };
