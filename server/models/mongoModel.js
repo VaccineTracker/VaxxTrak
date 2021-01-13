@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+const { Schema } = mongoose;
 const keys = require('../../config/keys');
 
 mongoose
@@ -13,15 +14,12 @@ mongoose
   .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
 
-
-
 const userSchema = new Schema({
-    username: String,
-    googleId: String,
-    thumbnail: String
-})
+  username: String,
+  googleId: String,
+  thumbnail: String,
+});
 
 const User = mongoose.model('user', userSchema);
-
 
 module.exports = User;
