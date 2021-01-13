@@ -25,4 +25,7 @@ async function fromZipcode(zipcode) {
 
   return data;
 }
-export default { URL, request };
+
+console.log(await fromZipcode('01886'));
+
+export default { URL, request, fromZipcode };
