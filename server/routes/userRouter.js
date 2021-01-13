@@ -4,6 +4,11 @@ const userController = require('../controllers/userController.js');
 
 const router = express.Router();
 
+router.get('/', userController.authCheck, (req, res) => {
+  // render profile page
+  res.render('profile', {user: req.user});
+});
+
 router.get('/:username', userController.getProfile, (req, res) => {
   res.status(200).json(res.locals.profile);
 });
