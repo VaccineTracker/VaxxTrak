@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
-const { ELEPHANT_URI } = require('../../config/keys');
+const keys = require('../../config/keys');
 
-const myURI = ELEPHANT_URI;
+const myURI = keys.postgres.dbURI;
 
 const URI = process.env.PG_URI || myURI;
 

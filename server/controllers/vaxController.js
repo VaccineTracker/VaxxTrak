@@ -1,4 +1,4 @@
-const db = require('../models/psql_db');
+const db = require('../models/psqlDB');
 
 const vaxController = {};
 
