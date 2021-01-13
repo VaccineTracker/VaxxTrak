@@ -1,20 +1,29 @@
+import hash from './states.js';
+
+const apiKey =
+  'CpgQ68eNMq9Z3twQDOuNWGfQGSjzRIxDcdrHP45P6WXJg7OzVBz8F62H9XYLmYYP';
+
 const URL = {
   moderna: 'https://data.cdc.gov/resource/b7pe-5nws.json',
   pfizer: 'https://data.cdc.gov/resource/saz5-9hgg.json',
-  casesByState: 'https://data.cdc.gov/resource/9mfq-cb36.json',
-  zipcode:
-    'https://www.zipcodeapi.com/rest/CpgQ68eNMq9Z3twQDOuNWGfQGSjzRIxDcdrHP45P6WXJg7OzVBz8F62H9XYLmYYP/info.json',
+  zipcode: `https://www.zipcodeapi.com/rest/${apiKey}/info.json`,
 };
 
-async function request(API, param, arg = '') {
+async function request(provider, arg = '') {
   let query;
-  if (arg) query = `?${param}=${arg}`;
+
+  if (arg) query = `?jurisdiction=${arg}`;
   else query = arg;
 
-  const response = await fetch(`${API}${query}`);
+  const api = URL[provider.toLowerCase()];
+  const prop = `total_${provider.toLowerCase()}_allocation_first_dose_shipments`;
+
+  const response = await fetch(`${api}${query}`);
   const data = await response.json();
 
-  return data;
+  const shipments = data[0][prop];
+
+  return shipments;
 }
 
 async function fromZipcode(zipcode) {
@@ -23,9 +32,9 @@ async function fromZipcode(zipcode) {
   const response = await fetch(query);
   const data = await response.json();
 
-  return data;
+  const { state } = data;
+
+  return hash[state];
 }
 
-console.log(await fromZipcode('01886'));
-
-export default { URL, request, fromZipcode };
+export { request, fromZipcode };
