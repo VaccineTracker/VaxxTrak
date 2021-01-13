@@ -6,6 +6,7 @@
     "es6": true,
     "node": true
   },
+  "import/extensions": ["off"],
   "rules": {
     "no-console": "off",
     "jsx-a11y/href-no-hash": ["off"],
