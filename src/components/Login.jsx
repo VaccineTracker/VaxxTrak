@@ -25,7 +25,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div class="authOptions">
+      <div className="authOptions">
         <form onSubmit={this.handleSubmit}>
           <input
             type="email"
@@ -45,7 +45,7 @@ class Login extends React.Component {
         </form>
         <br></br>
         <div>
-          <a class="googlebutton" href="/auth/google">
+          <a className="googlebutton" href="/auth/google">
             Google+
           </a>
         </div>

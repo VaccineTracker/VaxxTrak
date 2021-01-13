@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', userController.authCheck, (req, res) => {
   // render profile page
-  res.render('profile', {user: req.user});
+  res.render('/', {user: req.user});
 });
 
 router.get('/:username', userController.getProfile, (req, res) => {
