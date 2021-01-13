@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
-  
+
   devServer: {
     publicPath: '/build',
     proxy: {
@@ -15,19 +15,21 @@ module.exports = {
     },
   },
   module: {
-    rules: [{
-      test: /\.jsx?/,
-      exclude: /(node-modules)/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
+    rules: [
+      {
+        test: /\.jsx?/,
+        exclude: /(node-modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         },
-      }
-    },
-    {
-      test: /\.s[ac]ss$/i,
-      use: ['style-loader', 'css-loader', 'sass-loader']
-    }]
-  }
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
 };
