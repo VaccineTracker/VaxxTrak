@@ -1,5 +1,6 @@
 # Private Keys
 keys.js
+/config/keys.js
 
 # Logs
 logs
@@ -106,7 +107,7 @@ dist
 # TernJS port file
 .tern-port
 
-/config/keys.js
+
 account_creds.js
 .DS_Store/
 **/.DS_Store

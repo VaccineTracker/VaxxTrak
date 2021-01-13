@@ -3,7 +3,6 @@ const express = require('express');
 const passportSetup = require('../config/passport-setup');
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
-const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
@@ -17,8 +16,7 @@ const authRoutes = require('./routes/auth-routes');
 
 // parse requests
 app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // set up view engine
 app.set('view engine', 'ejs');
