@@ -1,11 +1,35 @@
+body {
+  margin: 0;
+  font-family: Oswald;
+  background-color: #d9e8f5;
+}
+
 .vaccineMain {
-	border: 2px solid purple;
-	background-color: sienna;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  border: 2px solid purple;
+  background-color: #ff9442;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .vaccineChart {
-	border: 8px solid green;
-	background-color: yellow;
+  border: 8px solid green;
+  background-color: yellow;
+}
+.search {
+  display: flex;
+  justify-content: flex-end;
+}
+
+h1 {
+  text-align: center;
+  background-color: #6c868d;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  background-color: #6c868d;
+  padding: 20px;
+  margin: auto;
 }
