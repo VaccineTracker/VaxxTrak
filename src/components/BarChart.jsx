@@ -9,8 +9,9 @@ const BarChart = () => {
 					labels   : [ 'hay', 'kween', 'sashay', 'shantay' ],
 					datasets : [
 						{
-							label : 'makeup',
-							data  : [ 12, 8, 42, 25 ]
+							label           : 'makeup',
+							data            : [ 12, 8, 42, 25 ],
+							backgroundColor : [ 'pink', 'magenta', 'coral', 'purple' ]
 						}
 					]
 				}}
