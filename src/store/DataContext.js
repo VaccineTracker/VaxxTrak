@@ -13,18 +13,6 @@ const initial_state = {
   ],
   labels: [],
 };
-// // console.log(allVaxData.map((st) => st.Total_Administered));
-// let allStateData;
-// const allStates = async () => {
-//   const res = await fetch('vaccinations/all');
-//   const all = await res.json();
-//   console.log(all);
-//   allStateData = all;
-//   // initial_state.datasets[0].data = await all.map((st) => st.Total_Administered);
-//   return all;
-// };
-// console.log(allStates().then((data) => data);
-// console.log(initial_state.datasets[0].data);
 
 export default ({ children }) => {
   const [data, setData] = useState(initial_state);
@@ -35,6 +23,8 @@ export default ({ children }) => {
     </DataContext.Provider>
   );
 };
+
+
 /**
  * 
  * ,
