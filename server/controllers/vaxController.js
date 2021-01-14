@@ -3,15 +3,15 @@ const db = require('../models/psqlDB');
 const vaxController = {};
 
 const query = {
-  all: 'SELECT * FROM vax',
+  all: 'SELECT "US_Territory", "Total_Administered" FROM vax',
   location: 'SELECT * FROM vax WHERE "US_Territory"=$1',
 };
 
 vaxController.getAllStates = async (req, res, next) => {
   try {
-    const { rows } = await db.query('SELECT * FROM vax');
+    const { rows } = await db.query(query.all);
+    console.log(rows);
     res.locals.allStates = rows;
-
     return next();
   } catch (error) {
     return next({

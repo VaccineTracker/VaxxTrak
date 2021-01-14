@@ -1,21 +1,12 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 export const UserContext = createContext();
 
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState();
+export default ({ children }) => {
   const [cookies] = useCookies();
-
-  useEffect(() => {
-    if (cookies.success) {
-      setUser({ ...user, verified: cookies.success, loggedIn: true });
-    } else {
-      setUser({ ...user, verified: null, loggedIn: false });
-    }
-  }, []);
+  const [user, setUser] = useState({ verified: cookies.success });
 
   return (
     <UserContext.Provider value={[user, setUser]}>
@@ -23,5 +14,3 @@ const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-export default UserProvider;
