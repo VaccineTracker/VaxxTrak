@@ -5,33 +5,24 @@ import { DataContext } from '../store/DataContext';
 import Chart from './Chart.jsx';
 import Vaccine from './Vaccine.jsx';
 import Login from './Login.jsx';
-import Chart from './Chart.jsx';
 import BarChart from './BarChart.jsx';
+import BarCart from './BarCart.jsx';
 
 export default () => {
-  const [user] = useContext(UserContext);
-  // const [data, setData] = useContext(DataContext);
+	const [ user ] = useContext(UserContext);
 
-  return (
-    <div className="main-container">
-      {user.verified ? '' : <Login />}
-      <Vaccine />
-      {/* <Chart /> */}
-      <BarChart />
-    </div>
-  );
+	return user && user.loggedIn ? (
+		<div className='main-container'>
+			<Vaccine />
+			<BarChart />
+		</div>
+	) : (
+		<div className='main-container'>
+			<Login />
+			<Vaccine />
+			<BarChart />
+			<BarCart />
+			<Chart />
+		</div>
+	);
 };
-
-/**
- *   // useEffect(() => {
-  //   const stats = fetch('vaccinations/all')
-  //   .then((res) => res.json())
-  //     .then((data) => data.map((st) => st.Total_Administered));
-  //   datasets[0].data
-  // setData({...data, datasets[0].data = stats})
- 
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
- */
