@@ -24,7 +24,7 @@ router.get(
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   // res.locals.isVerified = true;
   const user = 'temporary_user_id';
-  console.log(`user in /google/redirect: ${req.user}`);
+
   res.cookie('success', user);
   res.redirect('/');
 });

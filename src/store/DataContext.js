@@ -6,16 +6,12 @@ export const DataContext = createContext();
 const initial_state = {
   datasets: [
     {
-      data: fetch('vaccinations/all')
-        .then((res) => res.json())
-        .then((data) => data.map((st) => st.Total_Administered)),
+      data: [],
       backgroundColor: [],
       label: 'Total Administered Vaccinations for All US. Territories',
     },
   ],
-  labels: fetch('vaccinations/all')
-    .then((res) => res.json())
-    .then((data) => data.map((st) => st.US_Territory)),
+  labels: [],
 };
 // // console.log(allVaxData.map((st) => st.Total_Administered));
 // let allStateData;
@@ -39,3 +35,11 @@ export default ({ children }) => {
     </DataContext.Provider>
   );
 };
+/**
+ * 
+ * ,
+  
+  fetch('vaccinations/all')
+    .then((res) => res.json())
+    .then((data) => data.map((st) => st.US_Territory)),
+ */
