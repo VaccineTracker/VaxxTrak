@@ -14,14 +14,18 @@ export default () => {
   useEffect(() => {
     fetch('vaccinations/all')
       .then((res) => res.json())
-      .then((data) => data.map((st) => st.Total_Administered))
-      .then((x) =>
-        setData({ ...data, datasets: [{ ...data.datasets[0], data: x }] })
+      .then((db) =>
+        setData({
+          ...data,
+          labels: db.map((st) => st.US_Territory),
+          datasets: [
+            {
+              ...data.datasets[0],
+              data: db.map((st) => st.Total_Administered),
+            },
+          ],
+        })
       );
-    fetch('vaccinations/all')
-      .then((res) => res.json())
-      .then((data) => data.map((st) => st.US_Territory))
-      .then((x) => setData({ ...data, labels: x }));
   }, []);
 
   return (

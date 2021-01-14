@@ -23,13 +23,3 @@ export default ({ children }) => {
     </DataContext.Provider>
   );
 };
-
-
-/**
- * 
- * ,
-  
-  fetch('vaccinations/all')
-    .then((res) => res.json())
-    .then((data) => data.map((st) => st.US_Territory)),
- */

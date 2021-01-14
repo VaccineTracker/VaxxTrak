@@ -1,12 +1,10 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Polar, Bar } from 'react-chartjs-2';
 
-const BarChart = ({ data }) => {
+export default ({ data }) => {
   return (
     <div>
-      <Bar data={data} />
+      <Polar data={data} />
     </div>
   );
 };
-
-export default BarChart;

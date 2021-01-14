@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from "react";
+import React from "react";
 import Search from "./Search.jsx";
 import Chart from './Chart.jsx'
 
