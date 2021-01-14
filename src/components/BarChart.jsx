@@ -1,28 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DataContext } from '../store/DataContext';
 import { Polar, Bar } from 'react-chartjs-2';
 
 const BarChart = () => {
-	return (
-		<div>
-			<Bar
-				data={{
-					labels   : [ 'hay', 'kween', 'sashay', 'shantay' ],
-					datasets : [
-						{
-							label           : 'makeup',
-							data            : [ 12, 8, 42, 25 ],
-							backgroundColor : [ 'pink', 'magenta', 'coral', 'purple' ]
-						}
-					]
-				}}
-				height={200}
-				width={200}
-				options={{
-					maintainAspectRatio : false
-				}}
-			/>
-		</div>
-	);
+  const [data, setData] = useContext(DataContext);
+
+  useEffect(() => {
+    const stats = fetch('vaccinations/all')
+      .then((res) => res.json())
+			.then((data) => data.map((st) => st.Total_Administered));
+		setData({...data, })
+    return () => {
+      cleanup;
+    };
+  }, [input]);
+
+  return (
+    <div>
+      <Bar data={data} />
+    </div>
+  );
 };
 
 export default BarChart;
