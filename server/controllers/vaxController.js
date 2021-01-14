@@ -10,7 +10,7 @@ const query = {
 vaxController.getAllStates = async (req, res, next) => {
   try {
     const { rows } = await db.query(query.all);
-    console.log(rows);
+    // console.log(rows);
     res.locals.allStates = rows;
     return next();
   } catch (error) {
