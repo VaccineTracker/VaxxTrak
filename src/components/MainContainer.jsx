@@ -1,15 +1,19 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { UserContext } from '../store/UserContext';
 import { DataContext } from '../store/DataContext';
 
-import Vaccine from './Vaccine.jsx';
 import Login from './Login.jsx';
-import BarChart from './BarChart.jsx';
+import Chart from './Chart.jsx';
+import Search from './Search.jsx';
+
+import { colors } from '../../assets/colors';
 
 export default () => {
   const [user] = useContext(UserContext);
   const [data, setData] = useContext(DataContext);
+  const [zip, setZip] = useState('');
+  const [loca, setLoca] = useState(true);
 
   useEffect(() => {
     fetch('vaccinations/all')
@@ -22,17 +26,50 @@ export default () => {
             {
               ...data.datasets[0],
               data: db.map((st) => st.Total_Administered),
+              backgroundColor: colors.filter((x, i) => i < db.length),
             },
           ],
         })
       );
   }, []);
 
+  useEffect(() => {
+    if (zip !== '') {
+      setLoca(false);
+      const codes = {
+        90210: 'California',
+        11205: 'New York',
+        19106: 'Pennsylvania',
+        '01852': 'Massachusetts',
+      };
+      fetch(`/vaccinations/${codes[zip.zip] || 'Massachusetts'}`)
+        .then((res) => res.json())
+        .then((st) =>
+          setData({
+            ...data,
+            labels: ['Total Distributed', 'Total Administered'],
+            datasets: [
+              {
+                ...data.datasets[0],
+                data: [st.Total_Distributed, st.Total_Administered],
+                backgroundColor: ['pink', 'coral'],
+              },
+            ],
+          })
+        );
+    }
+  }, [zip]);
+
   return (
     <div className="main-container">
       {user.verified ? '' : <Login />}
-      <Vaccine />
-      <BarChart data={data} />
+      {/* <Vaccine /> */}
+      <Search getZip={setZip} />
+      {loca ? (
+        <Chart type="bar" data={data} />
+      ) : (
+        <Chart type="doughnut" data={data} />
+      )}
     </div>
   );
 };
