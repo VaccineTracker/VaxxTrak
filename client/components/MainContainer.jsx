@@ -62,8 +62,10 @@ export default () => {
 
   return (
     <div className="main-container">
-      {user.verified ? '' : <Login />}
-      <Search getZip={setZip} />
+      <nav>
+        {user.verified ? '' : <Login />}
+        <Search getZip={setZip} />
+      </nav>
       {load ? (
         <Chart type="bar" data={data} />
       ) : (

@@ -1,7 +1,27 @@
+@import '_colors.scss';
+
 body {
   margin: 0;
   font-family: Oswald;
-  background-color: #d9e8f5;
+  background-color: $bg-color;
+}
+nav {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-item {
+  display: flex;
+  flex-flow: row-reverse wrap;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;
+
+  div {
+    padding: 16px;
+  }
 }
 
 .vaccineMain {
