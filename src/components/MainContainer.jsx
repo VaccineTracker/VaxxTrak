@@ -13,7 +13,7 @@ export default () => {
   const [user] = useContext(UserContext);
   const [data, setData] = useContext(DataContext);
   const [zip, setZip] = useState('');
-  const [loca, setLoca] = useState(true);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
     fetch('vaccinations/all')
@@ -35,7 +35,7 @@ export default () => {
 
   useEffect(() => {
     if (zip !== '') {
-      setLoca(false);
+      setLoad(false);
       const codes = {
         90210: 'California',
         11205: 'New York',
@@ -63,9 +63,8 @@ export default () => {
   return (
     <div className="main-container">
       {user.verified ? '' : <Login />}
-      {/* <Vaccine /> */}
       <Search getZip={setZip} />
-      {loca ? (
+      {load ? (
         <Chart type="bar" data={data} />
       ) : (
         <Chart type="doughnut" data={data} />
