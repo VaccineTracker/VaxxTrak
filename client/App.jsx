@@ -2,7 +2,7 @@ import React from 'react';
 
 import DataProvider from './store/DataContext';
 import UserProvider from './store/UserContext';
-import MainContainer from './components/MainContainer.jsx';
+import MainContainer from './containers/MainContainer.jsx';
 
 import './assets/app.scss';
 

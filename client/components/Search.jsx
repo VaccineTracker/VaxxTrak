@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-
-import { DataContext } from '../store/DataContext';
 
 export default function Search({ setZip }) {
   const { register, handleSubmit } = useForm();
-  const [data, setData] = useContext(DataContext);
 
   return (
     <div className="nav-item">

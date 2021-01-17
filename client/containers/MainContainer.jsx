@@ -3,9 +3,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../store/UserContext';
 import { DataContext } from '../store/DataContext';
 
-import Login from './Login.jsx';
-import Chart from './Chart.jsx';
-import Search from './Search.jsx';
+import Login from '../components/Login.jsx';
+import Chart from '../components/Chart.jsx';
+import Search from '../components/Search.jsx';
 
 import { colors } from '../../assets/colors';
 
