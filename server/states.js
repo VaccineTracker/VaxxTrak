@@ -1,4 +1,4 @@
-const states = {
+module.exports = {
   AL: 'Alabama',
   AK: 'Alaska',
   AS: 'American Samoa',
@@ -59,5 +59,3 @@ const states = {
   WI: 'Wisconsin',
   WY: 'Wyoming',
 };
-
-module.exports = states;

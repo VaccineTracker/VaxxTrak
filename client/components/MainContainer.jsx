@@ -7,14 +7,13 @@ import Login from './Login.jsx';
 import Chart from './Chart.jsx';
 import Search from './Search.jsx';
 
-import { request, fromZipcode } from '../../api/api';
 import { colors } from '../../assets/colors';
 
 export default function MainContainer() {
   const [user] = useContext(UserContext);
   const [data, setData] = useContext(DataContext);
   const [zip, setZip] = useState('');
-  const [load, setLoad] = useState(true);
+  const [allStates, setAllStates] = useState(true);
 
   useEffect(() => {
     fetch('api/vaccinations/all')
@@ -36,25 +35,23 @@ export default function MainContainer() {
 
   useEffect(() => {
     if (zip !== '') {
-      setLoad(false);
-      const codes = {
-        90210: 'California',
-        11205: 'New York',
-        19106: 'Pennsylvania',
-        '01852': 'Massachusetts',
-      };
-      fromZipcode('01852').then((data) => console.log(data));
-      fetch(`/api/vaccinations/${codes[zip.zip] || 'Massachusetts'}`)
+      setAllStates(false);
+      fetch(`/api/vaccinations/${zip}`)
         .then((res) => res.json())
         .then((st) =>
           setData({
             ...data,
-            labels: ['Total Distributed', 'Total Administered'],
+            labels: [
+              'Total Distributed',
+              'Total Administered',
+              'Pfizer Distribution',
+              'Moderna Distribution',
+            ],
             datasets: [
               {
                 ...data.datasets[0],
-                data: [st.Total_Distributed, st.Total_Administered],
-                backgroundColor: ['pink', 'coral'],
+                data: [st.dist, st.admin, st.pfizer, st.moderna],
+                backgroundColor: ['pink', 'coral', 'gold', 'teal'],
               },
             ],
           })
@@ -68,7 +65,7 @@ export default function MainContainer() {
         {user.verified ? '' : <Login />}
         <Search setZip={setZip} />
       </nav>
-      {load ? (
+      {allStates ? (
         <Chart type="bar" data={data} />
       ) : (
         <Chart type="doughnut" data={data} />

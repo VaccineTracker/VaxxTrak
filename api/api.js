@@ -1,4 +1,4 @@
-// import hash from './states.js';
+import hash from '../server/states.js';
 // const states = require('states');
 
 const apiKey =
@@ -45,9 +45,9 @@ function fromZipcode(zipcode) {
   // return states[state];
 }
 
-const state = fromZipcode('11221').then((data) => console.log(data));
+// const state = fromZipcode('11221').then((data) => console.log(data));
 
-// export { request, fromZipcode };
+export { request, fromZipcode };
 
 /**
  * EXAMPLE: 
