@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-export default () => {
+export default function Login() {
   const [login, setLogin] = useState({ email: '', password: '' });
   const { register, handleSubmit } = useForm();
 
@@ -12,9 +12,9 @@ export default () => {
   return (
     <div className="nav-item">
       <div>
-        <button className="google-button" href="/auth/google">
+        <a className="google-button" href="/auth/google">
           Google+
-        </button>
+        </a>
       </div>
       <div>
         <form onSubmit={handleSubmit((val) => setLogin({ ...val }))}>
@@ -30,4 +30,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

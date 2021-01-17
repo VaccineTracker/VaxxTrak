@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
-export default () => {
-  const [zipcode, setZipCode] = useState('90210');
-  const { register, handleSubmit } = useForm();
+import { DataContext } from '../store/DataContext';
 
-  useEffect(() => {
-    console.log('zipcode:', zipcode);
-  }, [zipcode]);
+export default function Search({ setZip }) {
+  const { register, handleSubmit } = useForm();
+  const [data, setData] = useContext(DataContext);
 
   return (
     <div className="nav-item">
       <div>
-        <form onSubmit={handleSubmit((val) => setZipCode(val.zip))}>
+        <form onSubmit={handleSubmit((val) => setZip(val.zip))}>
           <label htmlFor="zip">
             Zipcode:
             <input
@@ -28,4 +26,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

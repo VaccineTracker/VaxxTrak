@@ -1,4 +1,4 @@
-export default {
+const states = {
   AL: 'Alabama',
   AK: 'Alaska',
   AS: 'American Samoa',
@@ -59,3 +59,5 @@ export default {
   WI: 'Wisconsin',
   WY: 'Wyoming',
 };
+
+module.exports = states;

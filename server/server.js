@@ -41,8 +41,8 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 
 // route-handling
-app.use('/profile', userRouter);
-app.use('/vaccinations', vaxRouter);
+app.use('/api/profile', userRouter);
+app.use('/api/vaccinations', vaxRouter);
 app.use('/auth', authRoutes);
 
 // production mode

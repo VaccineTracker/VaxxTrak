@@ -1,9 +1,10 @@
-import hash from './states.js';
+// import hash from './states.js';
+// const states = require('states');
 
 const apiKey =
   'kkENTZcAAU06hG5HdTBYNx2MnPMgDunV1tu5xoQ5awJ9fsPmAonDRoBNs1b3ZsNT';
 
-export const URL = {
+const URL = {
   moderna: 'https://data.cdc.gov/resource/b7pe-5nws.json',
   pfizer: 'https://data.cdc.gov/resource/saz5-9hgg.json',
   zipcode: `https://www.zipcodeapi.com/rest/${apiKey}/info.json`,
@@ -28,24 +29,25 @@ async function request(provider, arg = '') {
   return shipments;
 }
 
-async function fromZipcode(zipcode) {
+function fromZipcode(zipcode) {
   console.log(`zipcode: ${zipcode}`);
   const query = `${URL.zipcode}/${zipcode}/degrees`;
   console.log(`query: ${query}`);
-  const response = await fetch(query, {
-    mode: 'no-cors',
-  });
-  console.log('post response');
-  const data = await response.json();
-  console.log(`data: ${data}`);
-  const { state } = data;
-  console.log(hash[state]);
-  return hash[state];
+  return fetch(query, { mode: 'no-cors' })
+    .then((response) => response.json())
+    .then(({ state }) => state)
+    .then((end) => console.log(end));
+  // console.log('post response');
+  // const data = await response.json();
+  // console.log(`data: ${data}`);
+  // const { state } = data;
+  // console.log(hash[state]);
+  // return states[state];
 }
 
-// const state = await fromZipcode('11221');
+const state = fromZipcode('11221').then((data) => console.log(data));
 
-export { request, fromZipcode };
+// export { request, fromZipcode };
 
 /**
  * EXAMPLE: 
