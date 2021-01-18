@@ -22,7 +22,7 @@ export default function chartReducer(state = initial_state, action) {
       const chart = {
         datasets: [
           {
-            data,
+            data, 
             backgroundColor,
             label,
           },

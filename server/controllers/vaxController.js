@@ -10,7 +10,8 @@ const hash = require('../states');
 const vaxController = {};
 
 const query = {
-  all: 'SELECT "US_Territory", "Total_Administered" FROM vax',
+  all:
+    'SELECT "US_Territory" AS "location", "Administered_per_100k" AS "adminPer100K" FROM vax',
   location: 'SELECT * FROM vax WHERE "US_Territory"=$1',
 };
 
@@ -63,7 +64,7 @@ vaxController.getState = async (req, res, next) => {
     const [data] = rows;
 
     res.locals.location = {
-      state: location,
+      location,
       dist: data.Total_Distributed,
       admin: data.Total_Administered,
     };
@@ -78,9 +79,9 @@ vaxController.getState = async (req, res, next) => {
 };
 
 vaxController.fromModerna = async (req, res, next) => {
-  const { state } = res.locals.location;
+  const { location } = res.locals.location;
 
-  const mod_q = `${URL.moderna}?jurisdiction=${state}`;
+  const mod_q = `${URL.moderna}?jurisdiction=${location}`;
   const mod_prop = `total_moderna_allocation_first_dose_shipments`;
 
   https
@@ -100,9 +101,9 @@ vaxController.fromModerna = async (req, res, next) => {
 };
 
 vaxController.fromPfizer = async (req, res, next) => {
-  const { state } = res.locals.location;
+  const { location } = res.locals.location;
 
-  const pfi_q = `${URL.pfizer}?jurisdiction=${state}`;
+  const pfi_q = `${URL.pfizer}?jurisdiction=${location}`;
   const pfi_prop = `total_pfizer_allocation_first_dose_shipments`;
 
   https

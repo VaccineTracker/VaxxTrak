@@ -14,17 +14,22 @@ export const setProfile = (profile) => ({
   payload: profile,
 });
 
-export const setData = (location_data) => ({
-  type: types.SET_DATA,
-  payload: location_data,
-});
-
 export const setNewLocation = (zipcode) => ({
   type: types.SET_NEW_LOCATION,
   payload: zipcode,
 });
 
+export const setDataGlobal = (global_data) => ({
+  type: types.SET_DATA_GLOBAL,
+  payload: global_data,
+});
+
+export const setDataCurrent = (location_data) => ({
+  type: types.SET_DATA_CURR,
+  payload: location_data,
+});
+
 export const setChartData = (data) => ({
-  type: types.SET_CHART,
+  type: types.SET_CHART_CURR,
   payload: data,
 });
