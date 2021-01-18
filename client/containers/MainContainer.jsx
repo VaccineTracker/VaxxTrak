@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { UserContext } from '../store/UserContext';
 import { DataContext } from '../store/DataContext';
 
 import Login from '../components/Login.jsx';
@@ -10,10 +10,14 @@ import Search from '../components/Search.jsx';
 import { colors } from '../../assets/colors';
 
 export default function MainContainer() {
-  const [user] = useContext(UserContext);
   const [data, setData] = useContext(DataContext);
   const [zip, setZip] = useState('');
   const [allStates, setAllStates] = useState(true);
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   useEffect(() => {
     fetch('api/vaccinations/all')
@@ -62,7 +66,7 @@ export default function MainContainer() {
   return (
     <div className="main-container">
       <nav>
-        {user.verified ? '' : <Login />}
+        {!user.verified && <Login />}
         <Search setZip={setZip} />
       </nav>
       {allStates ? (
