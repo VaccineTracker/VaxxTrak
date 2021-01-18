@@ -6,7 +6,7 @@ export default function Login() {
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    console.log('new login:', login);
+    // console.log('new login:', login);
   }, [login]);
 
   return (

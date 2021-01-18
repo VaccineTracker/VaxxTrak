@@ -9,7 +9,7 @@ const initial_state = {
   pfizer: null,
 };
 
-const dataReducer = (state = initial_state, action) => {
+export default function dataReducer(state = initial_state, action) {
   switch (action.type) {
     case types.SET_DATA:
       return {
@@ -24,6 +24,4 @@ const dataReducer = (state = initial_state, action) => {
     default:
       return state;
   }
-};
-
-export default dataReducer;
+}

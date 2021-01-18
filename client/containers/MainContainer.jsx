@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { DataContext } from '../store/DataContext';
+import * as action from '../redux/actions/actions';
 
 import Login from '../components/Login.jsx';
 import Chart from '../components/Chart.jsx';
@@ -10,70 +10,66 @@ import Search from '../components/Search.jsx';
 import { colors } from '../../assets/colors';
 
 export default function MainContainer() {
-  const [data, setData] = useContext(DataContext);
-  const [zip, setZip] = useState('');
-  const [allStates, setAllStates] = useState(true);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  const [type, setType] = useState('bar');
   const user = useSelector((state) => state.user);
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  const zipcode = useSelector((state) => state.data.zipcode);
+  const charts = useSelector((state) => state.chart);
 
   useEffect(() => {
     fetch('api/vaccinations/all')
       .then((res) => res.json())
-      .then((db) =>
-        setData({
-          ...data,
-          labels: db.map((st) => st.US_Territory),
-          datasets: [
-            {
-              ...data.datasets[0],
-              data: db.map((st) => st.Total_Administered),
-              backgroundColor: colors.filter((x, i) => i < db.length),
-            },
-          ],
-        })
+      .then((allStateData) =>
+        dispatch(
+          action.setChartData({
+            label: 'Total Administered Doses for All U.S. Territories',
+            labels: allStateData.map((st) => st.US_Territory),
+            data: allStateData.map((st) => st.Total_Administered),
+            backgroundColor: colors.filter((x, i) => i < allStateData.length),
+          })
+        )
       );
+    setLoading(false);
   }, []);
 
   useEffect(() => {
-    if (zip !== '') {
-      setAllStates(false);
-      fetch(`/api/vaccinations/${zip}`)
+    if (zipcode) {
+      setLoading(true);
+      fetch(`/api/vaccinations/${zipcode}`)
         .then((res) => res.json())
-        .then((st) =>
-          setData({
-            ...data,
-            labels: [
-              'Total Distributed',
-              'Total Administered',
-              'Pfizer Distribution',
-              'Moderna Distribution',
-            ],
-            datasets: [
-              {
-                ...data.datasets[0],
-                data: [st.dist, st.admin, st.pfizer, st.moderna],
-                backgroundColor: ['pink', 'coral', 'gold', 'teal'],
-              },
-            ],
-          })
+        .then((stateData) =>
+          dispatch(
+            action.setChartData({
+              label: `${zipcode}`,
+              labels: [
+                'Total Distributed',
+                'Total Administered',
+                'Pfizer Distribution',
+                'Moderna Distribution',
+              ],
+              data: [
+                stateData.dist,
+                stateData.admin,
+                stateData.pfizer,
+                stateData.moderna,
+              ],
+              backgroundColor: ['pink', 'coral', 'gold', 'teal'],
+            })
+          )
         );
+      setLoading(false);
+      setType('doughnut');
     }
-  }, [zip]);
+  }, [zipcode]);
 
   return (
     <div className="main-container">
       <nav>
         {!user.verified && <Login />}
-        <Search setZip={setZip} />
+        <Search />
       </nav>
-      {allStates ? (
-        <Chart type="bar" data={data} />
-      ) : (
-        <Chart type="doughnut" data={data} />
-      )}
+      {!loading && <Chart type={type} data={charts.charts[0]} />}
     </div>
   );
 }
