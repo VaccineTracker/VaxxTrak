@@ -2,18 +2,27 @@ import * as types from '../constants/constants';
 
 const initial_state = {
   verified: null,
+  loggedIn: false,
   username: null,
   user_id: null,
   location: null,
 };
 
-export default userReducer = (state = initial_state, action) => {
+const userReducer = (state = initial_state, action) => {
   switch (action.type) {
-    case types.ACTIVE_USER:
-      return true;
-    case types.INACTIVE_USER:
-      return true;
+    case types.LOGIN_USER:
+      return {
+        ...state,
+        loggedIn: true,
+        user_id: action.payload,
+      };
+    case types.LOGOUT_USER:
+      return {
+        ...initial_state,
+      };
     default:
       return state;
   }
 };
+
+export default userReducer;

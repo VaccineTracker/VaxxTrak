@@ -9,19 +9,21 @@ const initial_state = {
   pfizer: null,
 };
 
-export default dataReducer = (state = initial_state, action) => {
+const dataReducer = (state = initial_state, action) => {
   switch (action.type) {
-    case types.STATE_DATA:
+    case types.SET_DATA:
       return {
         ...state,
-        state: 'this is the location',
+        ...action.payload,
       };
     case types.SET_NEW_LOCATION:
       return {
         ...state,
-        zipcode: '01852',
+        zipcode: action.payload,
       };
     default:
       return state;
   }
 };
+
+export default dataReducer;

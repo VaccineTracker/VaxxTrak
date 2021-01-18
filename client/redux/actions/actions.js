@@ -1,23 +1,25 @@
 import * as types from '../constants/constants';
 
-export const activeUser = (user_id) => ({
-  type: types.ACTIVE_USER,
+export const loginUser = (user_id) => ({
+  type: types.LOGIN_USER,
   payload: user_id,
 });
 
-export const inactiveUser = () => ({
-  type: types.INACTIVE_USER,
+export const logoutUser = () => ({
+  type: types.LOGOUT_USER,
 });
 
-export const useStateData = () => ({
-  type: types.STATE_DATA,
+export const setData = (location_data) => ({
+  type: types.SET_DATA,
+  payload: location_data,
 });
 
-export const useChartData = () => ({
-  type: types.CHART_DATA,
-});
-
-export const useNewLocation = (zipcode) => ({
+export const setNewLocation = (zipcode) => ({
   type: types.SET_NEW_LOCATION,
   payload: zipcode,
+});
+
+export const setChartData = (data) => ({
+  type: types.SET_CHART,
+  payload: data,
 });

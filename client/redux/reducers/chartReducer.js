@@ -1,6 +1,6 @@
 import * as types from '../constants/constants';
 
-const initial_state = {
+const proto = {
   datasets: [
     {
       data: [],
@@ -11,11 +11,19 @@ const initial_state = {
   labels: [],
 };
 
-export default chartReducer = (state = initial_state, action) => {
+const initial_state = {
+  charts: [],
+};
+
+const chartReducer = (state = initial_state, action) => {
   switch (action.type) {
-    case types.CHART_DATA:
-      return true;
+    case types.SET_CHART:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
 };
+
+export default chartReducer;
