@@ -28,6 +28,7 @@ export default function MainContainer() {
 
   useEffect(() => {
     if (zipcode) {
+      setLoading(true);
       fetch(`/api/vaccinations/${zipcode}`)
         .then((res) => res.json())
         .then((stateData) => dispatch(action.setDataCurrent(stateData)));
@@ -36,17 +37,24 @@ export default function MainContainer() {
   }, [zipcode]);
 
   useEffect(() => {
-    console.log('globalChart');
-    setDisplay(<Chart type="bar" data={charts.globalChart} />);
-  }, [charts.globalChart]);
+    console.log(mode);
+    if (mode === 'all') {
+      console.log('globalChart');
+      // setDisplay(<Chart type="bar" data={charts.globalChart} />);
+    } else if (mode === 'current') {
+      console.log('locaChart');
+      console.log(charts.locationCharts);
+      // const map = charts.locationCharts.map((x, i) => {
+      // <Chart type="doughnut" key={`${zipcode}-${i}`} data={x} />;
+      // });
+      // setDisplay(map);
+    }
+    setLoading(false);
+    console.log(loading, charts, mode);
+  }, [charts]);
 
-  useEffect(() => {
-    console.log('locaChart');
-    const map = charts.locationCharts.map((x, i) => {
-      <Chart type="doughnut" key={`${zipcode}-${i}`} data={x} />;
-    });
-    setDisplay(map);
-  }, [charts.locationCharts]);
+  // useEffect(() => {
+  // }, [charts.locationCharts]);
 
   return (
     <div className="main-container">
@@ -54,7 +62,17 @@ export default function MainContainer() {
         {!user.verified && <Login />}
         <Search />
       </nav>
-      {display && display}
+      {(!loading && mode === 'all' && (
+        <div>
+          <Chart type="bar" data={charts.globalChart} />
+        </div>
+      )) ||
+        (mode === 'current' && (
+          <div>
+            <Chart type="doughtnut" data={charts.locationCharts[0]} />
+            {/* <Chart type="doughtnut" data={charts.locationCharts[1]} /> */}
+          </div>
+        ))}
     </div>
   );
 }
