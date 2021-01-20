@@ -5,9 +5,7 @@ export default function Login() {
   const [login, setLogin] = useState({ email: '', password: '' });
   const { register, handleSubmit } = useForm();
 
-  useEffect(() => {
-    // console.log('new login:', login);
-  }, [login]);
+  useEffect(() => console.log('new login:', login), [login]);
 
   return (
     <div className="nav-item">

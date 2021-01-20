@@ -9,6 +9,6 @@ export default function Chart({ type, data }) {
       {type === 'polar' && <Polar data={data} />}
     </div>
   ) : (
-    <h1>Loading...</h1>
+    ''
   );
 }

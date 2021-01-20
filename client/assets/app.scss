@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: Oswald;
   background-color: $bg-color;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 nav {
   display: flex;
@@ -21,6 +23,11 @@ nav {
 
   div {
     padding: 16px;
+  }
+}
+.main-container {
+  .view-chart {
+    height: 100px;
   }
 }
 
