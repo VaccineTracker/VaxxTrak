@@ -2,12 +2,11 @@ const path = require('path');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: './src/index.js',
+  entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
-
   devServer: {
     publicPath: '/build',
     proxy: {
@@ -17,8 +16,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
-        exclude: /(node-modules)/,
+        test: /.(js|jsx)$/,
+        exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -28,6 +27,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
+        exclude: /(node_modules)/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],

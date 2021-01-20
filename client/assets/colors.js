@@ -1,4 +1,4 @@
-export var colors = [
+export default [
   'Navy',
   'DarkBlue',
   'MediumBlue',
@@ -140,4 +140,3 @@ export var colors = [
   'Ivory',
   'White',
 ];
-
